@@ -1,0 +1,64 @@
+clases
+- atributos
+- metodos (implementados)
+
+interfaces
+- atributos
+- metodos (no implementados)
+
+
+HERENCIA
+clase A que hereda de otra clase B
+
+clase Animal {
+  nombre: string;
+
+  comer() {
+    while (hayComida)  {
+      "Abre la boca"
+      "Ingresa el alimento"
+      "Mastica"
+      "Traga"
+    }
+  }
+}
+
+p = new Perro()
+p.comer()
+
+interface Movimiento {
+
+  desplazarse(extremidades: number): string;
+
+}
+
+clase Perro extends Animal implements Movimiento {
+
+  desplazarse(extremidades: number): string {
+    "mover las patas"
+    "caminar"
+    return ""
+  }
+
+}
+
+clase Pez extends Animal implements Movimiento {
+
+  desplazarse(extremidades: number): string {
+    "mover las aletas"
+    "nadar"
+  }
+
+}
+
+clase Humano implements Movimiento {
+  desplazarse(extremidades: number): string {
+    "mover los pies"
+    "caminar"
+  }
+}
+
+Pez[]
+Perro[]
+Animal[]
+Movimiento[]
