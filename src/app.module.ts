@@ -13,7 +13,7 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(EjemploMiddleware) // MIDDLEWARE A APLICAR
-      .forRoutes('usuario', 'permiso');
+      .forRoutes('usuario');
   }
 
 

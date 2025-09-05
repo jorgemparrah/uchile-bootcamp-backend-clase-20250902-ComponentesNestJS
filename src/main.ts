@@ -4,10 +4,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UsuarioModule } from './usuario/usuario.module';
 import { PermisoModule } from './permiso/permiso.module';
 import { ErrorInternoFilter } from './error-interno/error-interno.filter';
+import { UsuarioService } from './usuario/usuario.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalFilters(new ErrorInternoFilter());
+  const service = app.get<UsuarioService>(UsuarioService);
+
+  app.useGlobalFilters(new ErrorInternoFilter(service));
 
   const config = new DocumentBuilder()
     .setTitle('API example')

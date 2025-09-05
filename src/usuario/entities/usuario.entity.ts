@@ -1,1 +1,6 @@
-export class Usuario {}
+export class Usuario {
+
+  nombre: string;
+  activo: boolean;
+
+}

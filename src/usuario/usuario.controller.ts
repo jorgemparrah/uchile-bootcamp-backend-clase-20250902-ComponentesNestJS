@@ -19,11 +19,8 @@ export class UsuarioController {
     console.log("req.id", req["id"]);
     console.log("req.validacion", req.validacion);
 
-    if (createUsuarioDto.nombre == "JORGE2") {
-      throw new InternalServerErrorException("ERROR DESDE EL CONTROLADOR");
-      // throw new BadRequestException("ERROR DESDE EL CONTROLADOR");
-    }
-
+    throw new InternalServerErrorException("ERROR DESDE EL CONTROLADOR");
+    
     return this.usuarioService.create(createUsuarioDto);
   }
 

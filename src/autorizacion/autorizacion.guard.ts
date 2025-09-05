@@ -1,8 +1,11 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { UsuarioService } from 'src/usuario/usuario.service';
 
 @Injectable()
 export class AutorizacionGuard implements CanActivate {
+
+  constructor(private readonly usuarioService: UsuarioService){}
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     console.log("GUARD");
@@ -13,10 +16,22 @@ export class AutorizacionGuard implements CanActivate {
     console.log(request.body)
 
     // VALIDACION DE PERMISOS
-    if (request.body.nombre == "JORGE") {
-      console.log("USUARIO SIN PERMISOS");
-      return false;
+    const usuariosActivos = this.usuarioService.usuariosActivos();
+    const nombreUsuario = request.body.nombre;
+
+    
+    const usuarioEncontrado = usuariosActivos.find(u => u.nombre == nombreUsuario);
+    if (usuarioEncontrado) {
+      return true;
     }
-    return true;
+
+    const loEncontro = usuariosActivos.some(u => u.nombre == nombreUsuario);
+    if (loEncontro) {
+      return true;
+    }
+
+    console.log("USUARIO SIN PERMISOS");
+    return false;
+
   }
 }
